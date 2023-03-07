@@ -1,0 +1,80 @@
+type Query {
+  getAuthor(name: ID!): Author
+  getAuthors: AuthorsResult!
+  getPosts(author: ID!): PostsResult!
+  getAllPosts: PostsResult!
+  getPost(id: ID!): Post!
+}
+
+type Mutation {
+  createAuthor(author: CreateAuthorInput): Author!
+  createPost(post: CreatePostInput): Post!
+  createComment(comment: CreateCommentInput): Comment!
+  updatePost(post: UpdatePostInput): Post!
+  deletePost(id: ID!): Boolean!
+}
+
+type Subscription {
+  onPostCreated(authorName: ID!): Post @aws_subscribe(mutations: ["createPost"])
+}
+
+type Post {
+  id: ID!
+  title: String!
+  content: String!
+  authorName: String!
+  author: Author!
+  comments: [Comment!]
+  publishDate: AWSDate!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input CreatePostInput {
+  title: String!
+  content: String!
+  authorName: String!
+  publishDate: AWSDate!
+}
+
+input UpdatePostInput {
+  id: ID!
+  title: String
+  content: String
+  publishDate: AWSDate!
+}
+
+type Author {
+  name: ID!
+  email: AWSEmail!
+  posts: [Post!]
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type PostsResult {
+  items: [Post!]!
+  nextToken: String
+}
+
+type AuthorsResult {
+  items: [Author!]!
+  nextToken: String
+}
+
+input CreateAuthorInput {
+  name: ID!
+  email: AWSEmail!
+}
+
+type Comment {
+  id: ID!
+  message: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input CreateCommentInput {
+  message: String!
+  postId: String!
+}

@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "prettier",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.ts"],
+      "extends": ["plugin:@aws-appsync/base"]
+    }
+  ]
+}
