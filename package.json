@@ -6,13 +6,17 @@
   },
   "scripts": {
     "cdk": "cdk",
-    "build": "rimraf build && esbuild --bundle src/resolvers/*.ts --outdir=build --external:\"@aws-appsync/utils\" --format=esm"
+    "codegen": "graphql-codegen",
+    "build": "rimraf build && esbuild --bundle src/resolvers/*.ts --outdir=build --external:\"@aws-appsync/utils\" --format=esm",
+    "deploy": "npm run build && cdk deploy"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@aws-appsync/eslint-plugin": "^1.1.0",
     "@aws-appsync/utils": "^1.1.0",
+    "@graphql-codegen/cli": "^3.2.2",
+    "@graphql-codegen/typescript": "^3.0.2",
     "@types/node": "^18.14.6",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
@@ -22,6 +26,7 @@
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "rimraf": "^4.3.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
   },

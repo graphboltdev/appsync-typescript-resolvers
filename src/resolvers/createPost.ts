@@ -1,22 +1,26 @@
 import { DynamoDBPutItemRequest, util } from '@aws-appsync/utils';
 import { createItem } from '../lib/helpers';
-import { Context, ICreatePostInput, IPost } from '../types';
+import { MutationCreatePostArgs } from '../types/appsync';
+import { Context } from '../types/types';
 
 export function request(
-  ctx: Context<ICreatePostInput>,
+  ctx: Context<MutationCreatePostArgs>,
 ): DynamoDBPutItemRequest {
   // add timestamps
-  const item = createItem<IPost>(ctx.args.post);
+  const item = createItem(ctx.args.post);
 
   return {
     operation: 'PutItem',
     key: {
       id: util.dynamodb.toDynamoDB(util.autoId()),
     },
-    attributeValues: util.dynamodb.toMapValues(item),
+    attributeValues: util.dynamodb.toMapValues({
+      publishDate: util.time.nowISO8601(),
+      ...item,
+    }),
   };
 }
 
-export function response(ctx: Context) {
+export function response(ctx: Context<MutationCreatePostArgs>) {
   return ctx.result;
 }

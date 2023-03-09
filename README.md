@@ -6,3 +6,9 @@ AppSync TypeScript Resolvers demo
 npm run build
 npx cdk deploy --all
 ```
+
+or
+
+```bash
+npm run deploy
+```

@@ -1,18 +1,20 @@
 import { DynamoDBUpdateItemRequest, util } from '@aws-appsync/utils';
-import { generateUpdateExpressions } from '../lib/helpers';
-import { Context, IUpdatePostInput } from '../types';
+import { generateUpdateExpressions, updateItem } from '../lib/helpers';
+import { MutationUpdatePostArgs } from '../types/appsync';
+import { Context } from '../types/types';
 
 export function request(
-  ctx: Context<IUpdatePostInput>,
+  ctx: Context<MutationUpdatePostArgs>,
 ): DynamoDBUpdateItemRequest {
   const { id, ...post } = ctx.args.post;
+  const updatedPost = updateItem(post);
 
   return {
     operation: 'UpdateItem',
     key: {
       id: util.dynamodb.toDynamoDB(id),
     },
-    update: generateUpdateExpressions(post),
+    update: generateUpdateExpressions(updatedPost),
     condition: {
       expression: 'attribute_exists(#id)',
       expressionNames: {
@@ -22,12 +24,6 @@ export function request(
   };
 }
 
-export function response(ctx: Context) {
-  ctx.stash.event = {
-    detailType: 'postUpdated',
-    detail: {
-      id: ctx.result.id,
-    },
-  };
+export function response(ctx: Context<MutationUpdatePostArgs>) {
   return ctx.result;
 }

@@ -18,6 +18,17 @@ export function createItem<T extends object>(item: T): CreateItem<T> {
   };
 }
 
+export type UpdateItem<T> = T & {
+  updatedAt: string;
+};
+
+export function updateItem<T extends object>(item: T): UpdateItem<T> {
+  return {
+    ...item,
+    updatedAt: util.time.nowISO8601(),
+  };
+}
+
 export function generateUpdateExpressions(
   item: Record<string, unknown>,
 ): DynamoDBExpression {

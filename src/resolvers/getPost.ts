@@ -1,7 +1,8 @@
 import { DynamoDBGetItem, util } from '@aws-appsync/utils';
-import { Context, IGetPostInput } from '../types';
+import { QueryGetPostArgs } from '../types/appsync';
+import { Context } from '../types/types';
 
-export function request(ctx: Context<IGetPostInput>): DynamoDBGetItem {
+export function request(ctx: Context<QueryGetPostArgs>): DynamoDBGetItem {
   return {
     operation: 'GetItem',
     key: {
@@ -10,12 +11,6 @@ export function request(ctx: Context<IGetPostInput>): DynamoDBGetItem {
   };
 }
 
-export function response(ctx: Context) {
-  ctx.stash.event = {
-    detailType: 'postUpdated',
-    detail: {
-      id: ctx.result.id,
-    },
-  };
+export function response(ctx: Context<QueryGetPostArgs>) {
   return ctx.result;
 }

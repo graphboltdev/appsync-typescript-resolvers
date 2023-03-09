@@ -7,15 +7,11 @@ type Query {
 }
 
 type Mutation {
-  createAuthor(author: CreateAuthorInput): Author!
-  createPost(post: CreatePostInput): Post!
-  createComment(comment: CreateCommentInput): Comment!
-  updatePost(post: UpdatePostInput): Post!
+  createAuthor(author: CreateAuthorInput!): Author!
+  createPost(post: CreatePostInput!): Post!
+  createComment(comment: CreateCommentInput!): Comment!
+  updatePost(post: UpdatePostInput!): Post!
   deletePost(id: ID!): Boolean!
-}
-
-type Subscription {
-  onPostCreated(authorName: ID!): Post @aws_subscribe(mutations: ["createPost"])
 }
 
 type Post {
@@ -34,14 +30,14 @@ input CreatePostInput {
   title: String!
   content: String!
   authorName: String!
-  publishDate: AWSDate!
+  publishDate: AWSDate
 }
 
 input UpdatePostInput {
   id: ID!
   title: String
   content: String
-  publishDate: AWSDate!
+  publishDate: AWSDate
 }
 
 type Author {
