@@ -2,7 +2,7 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as appsync from 'aws-cdk-lib/aws-appsync';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
-import { bundleAppyncResolver } from './helpers';
+import { bundleAppSyncResolver } from './helpers';
 
 export class CdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -55,7 +55,7 @@ export class CdkStack extends cdk.Stack {
       name: 'getPosts',
       api,
       dataSource: postsDS,
-      code: bundleAppyncResolver('src/resolvers/getPosts.ts'),
+      code: bundleAppSyncResolver('src/resolvers/getPosts.ts'),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
     });
 
@@ -73,7 +73,7 @@ export class CdkStack extends cdk.Stack {
       name: 'getPost',
       api,
       dataSource: postsDS,
-      code: bundleAppyncResolver('src/resolvers/getPost.ts'),
+      code: bundleAppSyncResolver('src/resolvers/getPost.ts'),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
     });
 
@@ -91,7 +91,7 @@ export class CdkStack extends cdk.Stack {
       name: 'createPost',
       api,
       dataSource: postsDS,
-      code: bundleAppyncResolver('src/resolvers/createPost.ts'),
+      code: bundleAppSyncResolver('src/resolvers/createPost.ts'),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
     });
 
@@ -109,7 +109,7 @@ export class CdkStack extends cdk.Stack {
       name: 'updatePost',
       api,
       dataSource: postsDS,
-      code: bundleAppyncResolver('src/resolvers/updatePost.ts'),
+      code: bundleAppSyncResolver('src/resolvers/updatePost.ts'),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
     });
 

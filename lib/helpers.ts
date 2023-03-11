@@ -1,7 +1,7 @@
 import { Code } from 'aws-cdk-lib/aws-appsync';
 import * as esbuild from 'esbuild';
 
-export const bundleAppyncResolver = (entryPoint: string): Code => {
+export const bundleAppSyncResolver = (entryPoint: string): Code => {
   const result = esbuild.buildSync({
     entryPoints: [entryPoint],
     external: ['@aws-appsync/utils'],
