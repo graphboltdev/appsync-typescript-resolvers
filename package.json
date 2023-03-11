@@ -6,9 +6,7 @@
   },
   "scripts": {
     "cdk": "cdk",
-    "codegen": "graphql-codegen",
-    "build": "rimraf build && esbuild --bundle src/resolvers/*.ts --outdir=build --external:\"@aws-appsync/utils\" --format=esm",
-    "deploy": "npm run build && cdk deploy"
+    "codegen": "graphql-codegen"
   },
   "author": "",
   "license": "ISC",
