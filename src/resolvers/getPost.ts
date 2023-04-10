@@ -1,8 +1,11 @@
-import { DynamoDBGetItem, util } from '@aws-appsync/utils';
+import { Context, DynamoDBGetItemRequest, util } from '@aws-appsync/utils';
 import { QueryGetPostArgs } from '../types/appsync';
-import { Context } from '../types/types';
 
-export function request(ctx: Context<QueryGetPostArgs>): DynamoDBGetItem {
+export function request(
+  ctx: Context<QueryGetPostArgs>,
+): DynamoDBGetItemRequest {
+  console.log('ctx.args.id', ctx.args.id);
+
   return {
     operation: 'GetItem',
     key: {

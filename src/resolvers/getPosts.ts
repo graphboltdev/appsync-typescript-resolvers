@@ -1,6 +1,5 @@
-import { DynamoDBQueryRequest, util } from '@aws-appsync/utils';
+import { Context, DynamoDBQueryRequest, util } from '@aws-appsync/utils';
 import { QueryGetPostArgs, QueryGetPostsArgs } from '../types/appsync';
-import { Context } from '../types/types';
 
 export function request(ctx: Context<QueryGetPostsArgs>): DynamoDBQueryRequest {
   return {

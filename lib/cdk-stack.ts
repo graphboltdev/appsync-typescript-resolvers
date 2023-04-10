@@ -3,6 +3,7 @@ import { Construct } from 'constructs';
 import * as appsync from 'aws-cdk-lib/aws-appsync';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import { bundleAppSyncResolver } from './helpers';
+import { CfnApiKey } from 'aws-cdk-lib/aws-appsync';
 
 export class CdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -34,6 +35,11 @@ export class CdkStack extends cdk.Stack {
         name: 'authorName',
         type: dynamodb.AttributeType.STRING,
       },
+    });
+
+    new CfnApiKey(this, 'public-api-key', {
+      apiId: api.apiId,
+      expires: Math.floor((Date.now() + 1000 * 60 * 60 * 24 * 365) / 1000),
     });
 
     const postsDS = api.addDynamoDbDataSource('postDataSource', postsTable);

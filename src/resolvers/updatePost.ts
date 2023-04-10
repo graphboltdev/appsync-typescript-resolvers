@@ -1,7 +1,6 @@
-import { DynamoDBUpdateItemRequest, util } from '@aws-appsync/utils';
+import { Context, DynamoDBUpdateItemRequest, util } from '@aws-appsync/utils';
 import { generateUpdateExpressions, updateItem } from '../lib/helpers';
 import { MutationUpdatePostArgs } from '../types/appsync';
-import { Context } from '../types/types';
 
 export function request(
   ctx: Context<MutationUpdatePostArgs>,

@@ -7,8 +7,11 @@ export const bundleAppSyncResolver = (entryPoint: string): Code => {
     external: ['@aws-appsync/utils'],
     bundle: true,
     write: false,
+    platform: 'node',
+    target: 'esnext',
     format: 'esm',
-    target: 'es2020',
+    sourcemap: 'inline',
+    sourcesContent: false,
   });
 
   return Code.fromInline(result.outputFiles[0].text);

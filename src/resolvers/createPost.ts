@@ -1,7 +1,6 @@
-import { DynamoDBPutItemRequest, util } from '@aws-appsync/utils';
+import { Context, DynamoDBPutItemRequest, util } from '@aws-appsync/utils';
 import { createItem } from '../lib/helpers';
 import { MutationCreatePostArgs } from '../types/appsync';
-import { Context } from '../types/types';
 
 export function request(
   ctx: Context<MutationCreatePostArgs>,

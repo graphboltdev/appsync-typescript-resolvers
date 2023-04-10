@@ -1,6 +1,5 @@
-import { DynamoDBDeleteItemRequest, util } from '@aws-appsync/utils';
+import { Context, DynamoDBDeleteItemRequest, util } from '@aws-appsync/utils';
 import { MutationDeletePostArgs } from '../types/appsync';
-import { Context } from '../types/types';
 
 export function request(
   ctx: Context<MutationDeletePostArgs>,
