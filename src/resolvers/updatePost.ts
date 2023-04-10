@@ -1,6 +1,6 @@
 import { Context, DynamoDBUpdateItemRequest, util } from '@aws-appsync/utils';
 import { generateUpdateExpressions, updateItem } from '../lib/helpers';
-import { MutationUpdatePostArgs } from '../types/appsync';
+import { MutationUpdatePostArgs, Post } from '../types/appsync';
 
 export function request(
   ctx: Context<MutationUpdatePostArgs>,
@@ -23,6 +23,8 @@ export function request(
   };
 }
 
-export function response(ctx: Context<MutationUpdatePostArgs>) {
+export function response(
+  ctx: Context<MutationUpdatePostArgs, object, object, object, Post>,
+) {
   return ctx.result;
 }

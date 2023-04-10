@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@aws-appsync/eslint-plugin": "^1.1.0",
-    "@aws-appsync/utils": "^1.2.2",
+    "@aws-appsync/utils": "^1.2.4",
     "@graphql-codegen/cli": "^3.2.2",
     "@graphql-codegen/typescript": "^3.0.2",
     "@types/node": "^18.14.6",

@@ -1,5 +1,9 @@
 import { Context, DynamoDBQueryRequest, util } from '@aws-appsync/utils';
-import { QueryGetPostArgs, QueryGetPostsArgs } from '../types/appsync';
+import {
+  QueryGetPostArgs,
+  QueryGetPostsArgs,
+  PostsResult,
+} from '../types/appsync';
 
 export function request(ctx: Context<QueryGetPostsArgs>): DynamoDBQueryRequest {
   return {
@@ -18,6 +22,8 @@ export function request(ctx: Context<QueryGetPostsArgs>): DynamoDBQueryRequest {
   };
 }
 
-export function response(ctx: Context<QueryGetPostArgs>) {
+export function response(
+  ctx: Context<QueryGetPostArgs, object, object, object, PostsResult>,
+) {
   return ctx.result;
 }
